@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router-dom";
-import PodcastCard from "./components/PodcastCard";
+import { useQuery } from "@tanstack/react-query";
 import { Podcast } from "@/interfaces/podcast";
+import PodcastCard from "./components/PodcastCard";
+import { loaderPodcastsQuery } from "@/helpers/queries";
 
 export default function PodcastsPage() {
-  const podcasts = useLoaderData() as Podcast[];
+  const { data: podcasts } = useQuery<Podcast[]>(loaderPodcastsQuery());
 
   return (
     <div className="grid h-full grid-rows-[auto,1fr] gap-5">

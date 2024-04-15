@@ -1,6 +1,13 @@
-import { fetchPodcasts } from "@/api/iTunesApple";
+import { QueryClient } from "@tanstack/react-query";
+import { loaderPodcastsQuery } from "@/helpers/queries";
 
-export async function loader() {
-  const data = await fetchPodcasts();
-  return data;
+export function loader(queryClient: QueryClient) {
+  return async function () {
+    const query = loaderPodcastsQuery();
+
+    return (
+      queryClient.getQueryData(query.queryKey) ??
+      (await queryClient.fetchQuery(query))
+    );
+  };
 }

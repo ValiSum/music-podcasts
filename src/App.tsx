@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // Import loading page
 import LoadingPage from "@/pages/LoadingPage";
@@ -15,6 +17,18 @@ import PodcastsPage, {
 import PodcastPage from "@/pages/PodcastPage";
 import EpisodePage from "@/pages/EpisodePage";
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours
+      staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
@@ -23,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <PodcastsPage />,
-        loader: podcastsPageLoader,
+        loader: podcastsPageLoader(queryClient),
       },
       {
         path: "podcast",
@@ -44,5 +58,10 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} fallbackElement={<LoadingPage />} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} fallbackElement={<LoadingPage />} />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+    </QueryClientProvider>
+  );
 }
