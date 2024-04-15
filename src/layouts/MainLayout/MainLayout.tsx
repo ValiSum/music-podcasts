@@ -1,7 +1,9 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigation } from "react-router-dom";
 import { Loader } from "@/components";
 
 export default function MainLayout() {
+  const { state } = useNavigation();
+
   return (
     <div className="grid h-screen grid-rows-[auto,1fr]">
       <nav className="top-0 z-10 flex items-center justify-between border-b-2 px-6 py-3 text-lg font-bold">
@@ -11,9 +13,8 @@ export default function MainLayout() {
           </Link>
         </div>
 
-        <Loader />
+        {state !== "idle" && <Loader />}
       </nav>
-
       <main className="overflow-hidden">
         <Outlet />
       </main>

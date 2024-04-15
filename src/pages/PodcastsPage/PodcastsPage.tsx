@@ -1,19 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import PodcastCard from "./components/PodcastCard";
+import { Podcast } from "@/interfaces/podcast";
 
 export default function PodcastsPage() {
-  const podcast = {
-    title: "Lorem ipsum dolor sit amet",
-    artist: "Tony Stark",
-    image:
-      "https://images.pexels.com/photos/1054713/pexels-photo-1054713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  };
-
-  const podcasts = Array(20)
-    .fill(null)
-    .map((_, index) => ({
-      ...podcast,
-      id: index,
-    }));
+  const podcasts = useLoaderData() as Podcast[];
 
   return (
     <div className="grid h-full grid-rows-[auto,1fr] gap-5">
