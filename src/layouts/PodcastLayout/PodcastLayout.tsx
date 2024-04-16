@@ -14,8 +14,8 @@ export default function PodcastLayout() {
 
   return (
     <div className="grid h-full grid-cols-4 gap-16 overflow-y-scroll">
-      <div className=" p-6">
-        <div className="flex flex-col divide-y rounded-md  border p-6 shadow-md">
+      <div className="p-6">
+        <div className="flex flex-col divide-y rounded-md border p-6 shadow-md">
           <div className="flex items-center justify-center pb-6">
             <Link to={`/podcast/${podcast.id}`}>
               <img
@@ -40,7 +40,7 @@ export default function PodcastLayout() {
           </div>
         </div>
       </div>
-      <div className="col-span-3 w-full bg-red-200 p-6">
+      <div className="col-span-3 w-full p-6">
         <Outlet />
       </div>
     </div>
