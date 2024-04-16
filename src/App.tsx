@@ -38,15 +38,15 @@ const router = createBrowserRouter([
         loader: PodcastsPage.loader(queryClient),
       },
       {
-        path: "podcast",
+        path: "podcast/:podcastId",
         element: <PodcastLayout />,
         children: [
           {
-            path: ":podcastId",
+            index: true,
             element: <PodcastPage />,
           },
           {
-            path: ":podcastId/episode/:episodeId",
+            path: "episode/:episodeId",
             element: <EpisodePage />,
           },
         ],
