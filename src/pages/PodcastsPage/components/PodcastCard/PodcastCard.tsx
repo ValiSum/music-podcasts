@@ -7,7 +7,11 @@ interface Props {
 
 export default function PodcastCard({ podcast }: Props) {
   return (
-    <Link to={`/podcast/${podcast.id}`} key={podcast.id} className="flex">
+    <Link
+      to={`/podcast/${podcast.id}`}
+      key={podcast.id}
+      className="mb-auto flex"
+    >
       <div className="w-full rounded-md border p-4 text-center shadow-lg">
         <div className="-mt-20 mb-4 flex justify-center">
           <img

@@ -11,9 +11,7 @@ import PodcastLayout from "./layouts/PodcastLayout";
 
 // Import pages
 import ErrorBoundaryPage from "@/pages/ErrorBoundaryPage";
-import PodcastsPage, {
-  loader as podcastsPageLoader,
-} from "@/pages/PodcastsPage";
+import PodcastsPage from "@/pages/PodcastsPage";
 import PodcastPage from "@/pages/PodcastPage";
 import EpisodePage from "@/pages/EpisodePage";
 
@@ -37,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <PodcastsPage />,
-        loader: podcastsPageLoader(queryClient),
+        loader: PodcastsPage.loader(queryClient),
       },
       {
         path: "podcast",

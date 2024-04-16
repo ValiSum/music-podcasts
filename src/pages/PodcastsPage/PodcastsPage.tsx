@@ -1,10 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import { Podcast } from "@/interfaces/podcast";
-import PodcastCard from "./components/PodcastCard";
+import { ChangeEvent } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useLoaderData, useSubmit } from "react-router-dom";
+import { useDebounce } from "rooks";
 import { loaderPodcastsQuery } from "@/helpers/queries";
+import { loader } from "./PodcastsPage.loader";
+import PodcastCard from "./components/PodcastCard";
+
+type LoaderData = Awaited<ReturnType<ReturnType<typeof loader>>>;
 
 export default function PodcastsPage() {
-  const { data: podcasts } = useQuery<Podcast[]>(loaderPodcastsQuery());
+  const { q } = useLoaderData() as LoaderData;
+  const { data: podcasts } = useSuspenseQuery(loaderPodcastsQuery(q));
+  const submit = useSubmit();
+
+  const debouncedSubmit = useDebounce(submit, 500);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+    debouncedSubmit(event.currentTarget.form);
 
   return (
     <div className="grid h-full grid-rows-[auto,1fr] gap-5">
@@ -17,6 +29,12 @@ export default function PodcastsPage() {
             type="search"
             className="text-md block w-full rounded-lg border border-gray-200 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
             placeholder="Filter podcasts..."
+            id="q"
+            name="q"
+            key={q}
+            autoFocus
+            defaultValue={q}
+            onChange={handleChange}
           />
         </form>
       </div>
@@ -31,3 +49,5 @@ export default function PodcastsPage() {
     </div>
   );
 }
+
+PodcastsPage.loader = loader;
