@@ -1,19 +1,20 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useParams } from "react-router-dom";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { loaderPodcastsQuery } from "@/helpers/queries";
 
 export default function PodcastLayout() {
-  const podcast = {
-    id: "1",
-    title: "Lorem ipsum dolor sit amet",
-    artist: "Tony Stark",
-    image:
-      "https://images.pexels.com/photos/1054713/pexels-photo-1054713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nisl nec nisl.",
-  };
+  const { podcastId } = useParams();
+  const { data: podcasts } = useSuspenseQuery(loaderPodcastsQuery());
+
+  const podcast = podcasts?.find((podcast) => podcast.id === podcastId);
+
+  if (!podcast) {
+    throw new Error("Podcast not found");
+  }
 
   return (
-    <div className="grid h-full grid-cols-4 gap-16">
-      <div className="p-6">
+    <div className="grid h-full grid-cols-4 gap-16 overflow-y-scroll">
+      <div className=" p-6">
         <div className="flex flex-col divide-y rounded-md  border p-6 shadow-md">
           <div className="flex items-center justify-center pb-6">
             <Link to={`/podcast/${podcast.id}`}>
@@ -35,7 +36,7 @@ export default function PodcastLayout() {
           </div>
           <div className="pt-6">
             <p className="font-bold">Description:</p>
-            <p className="italic">{podcast.description}</p>
+            <p className="italic">{podcast.summary}</p>
           </div>
         </div>
       </div>

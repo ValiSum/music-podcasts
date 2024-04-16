@@ -15,6 +15,9 @@ import PodcastsPage from "@/pages/PodcastsPage";
 import PodcastPage from "@/pages/PodcastPage";
 import EpisodePage from "@/pages/EpisodePage";
 
+// Import loaders
+import { podcastsLoader } from "@/helpers/loaders";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -35,18 +38,19 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <PodcastsPage />,
-        loader: PodcastsPage.loader(queryClient),
+        loader: podcastsLoader(queryClient),
       },
       {
-        path: "podcast/:podcastId",
+        path: "podcast",
         element: <PodcastLayout />,
+        loader: podcastsLoader(queryClient),
         children: [
           {
-            index: true,
+            path: ":podcastId",
             element: <PodcastPage />,
           },
           {
-            path: "episode/:episodeId",
+            path: ":podcastId/episode/:episodeId",
             element: <EpisodePage />,
           },
         ],

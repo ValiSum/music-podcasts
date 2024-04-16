@@ -3,10 +3,10 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useLoaderData, useSubmit } from "react-router-dom";
 import { useDebounce } from "rooks";
 import { loaderPodcastsQuery } from "@/helpers/queries";
-import { loader } from "./PodcastsPage.loader";
+import { podcastsLoader } from "@/helpers/loaders";
 import PodcastCard from "./components/PodcastCard";
 
-type LoaderData = Awaited<ReturnType<ReturnType<typeof loader>>>;
+type LoaderData = Awaited<ReturnType<ReturnType<typeof podcastsLoader>>>;
 
 export default function PodcastsPage() {
   const { q } = useLoaderData() as LoaderData;
@@ -49,5 +49,3 @@ export default function PodcastsPage() {
     </div>
   );
 }
-
-PodcastsPage.loader = loader;

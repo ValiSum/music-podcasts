@@ -17,6 +17,9 @@ interface PodcastsResponse {
       "im:artist": {
         label: string;
       };
+      summary: {
+        label: string;
+      };
     }[];
   };
 }
@@ -29,5 +32,6 @@ export function podcastsMapper(podcasts: PodcastsResponse): Podcasts {
     title: podcast["im:name"].label,
     image: podcast["im:image"][2].label,
     artist: podcast["im:artist"].label,
+    summary: podcast.summary.label,
   }));
 }
