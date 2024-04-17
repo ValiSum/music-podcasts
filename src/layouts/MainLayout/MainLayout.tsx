@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigation } from "react-router-dom";
-import { Loader } from "@/components";
+import { Spinner } from "@/components";
 
 export default function MainLayout() {
   const { state } = useNavigation();
@@ -13,7 +13,7 @@ export default function MainLayout() {
           </Link>
         </div>
 
-        {state !== "idle" && <Loader />}
+        {state !== "idle" && <Spinner />}
       </nav>
       <main className="overflow-hidden">
         <Outlet />

@@ -1,4 +1,4 @@
-import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
 
 export default function ErrorBoundaryPage() {
   const error = useRouteError();
@@ -12,12 +12,18 @@ export default function ErrorBoundaryPage() {
   }
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{errorMessage}</i>
-      </p>
+    <div
+      id="error-page"
+      className="mx-auto flex h-screen max-w-xl items-center"
+    >
+      <div className="flex h-min w-full flex-col gap-4 rounded-md border p-6 text-center shadow-md">
+        <h1 className="text-2xl font-bold">Oops!</h1>
+        <p className="italic">Sorry, an unexpected error has occurred.</p>
+        <p className="italic">{errorMessage}</p>
+        <Link to="/" reloadDocument className="text-sky-600 underline">
+          Reload the current page
+        </Link>
+      </div>
     </div>
   );
 }

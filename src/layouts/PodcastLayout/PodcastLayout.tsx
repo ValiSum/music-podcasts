@@ -1,6 +1,7 @@
 import { Outlet, Link, useParams } from "react-router-dom";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { loaderPodcastsQuery } from "@/helpers/queries";
+import { SanitizeHtml } from "@/components";
 
 export default function PodcastLayout() {
   const { podcastId } = useParams();
@@ -36,7 +37,7 @@ export default function PodcastLayout() {
           </div>
           <div className="pt-6">
             <p className="font-bold">Description:</p>
-            <p className="italic">{podcast.summary}</p>
+            <SanitizeHtml html={podcast.summary} />
           </div>
         </div>
       </div>

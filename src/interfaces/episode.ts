@@ -3,4 +3,6 @@ export interface Episode {
   title: string;
   date: string;
   duration: string;
+  description: string;
+  source: string;
 }

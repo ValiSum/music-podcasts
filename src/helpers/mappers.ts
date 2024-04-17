@@ -45,8 +45,10 @@ interface PodcastResponse {
     trackId: number;
     kind: "podcast" | "podcast-episode";
     trackName: string;
-    releaseDate?: string; // 2024-04-16T08:00:00Z
-    trackTimeMillis?: number; // 7764000
+    releaseDate?: string;
+    trackTimeMillis?: number;
+    description?: string;
+    episodeUrl: string;
   }[];
 }
 
@@ -60,5 +62,7 @@ export function podcastMapper(podcast: PodcastResponse): Episodes {
       title: episode.trackName,
       date: dateFormatter(episode.releaseDate),
       duration: timeFormatter(episode.trackTimeMillis),
+      description: episode?.description || "",
+      source: episode.episodeUrl,
     }));
 }
