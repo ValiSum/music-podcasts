@@ -22,6 +22,14 @@ git clone https://github.com/ValiSum/music-podcasts
 cd music-podcasts
 ```
 
+### Environment Configuration
+
+To set up the project environment, you need to rename the `.env.example` file to `.env`. Make sure you are in the main project folder `music-podcasts`:
+
+```bash
+mv .env.example .env
+```
+
 ### Install dependencies
 
 Install the dependencies with your preferred package manager:
