@@ -2,8 +2,8 @@ import { ChangeEvent } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useLoaderData, useSubmit } from "react-router-dom";
 import { useDebounce } from "rooks";
-import { loaderPodcastsQuery } from "@/helpers/queries";
 import { podcastsLoader } from "@/helpers/loaders";
+import { loaderPodcastsQuery } from "@/helpers/queries";
 import PodcastCard from "./components/PodcastCard";
 
 type LoaderData = Awaited<ReturnType<ReturnType<typeof podcastsLoader>>>;

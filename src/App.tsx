@@ -16,7 +16,7 @@ import PodcastPage from "@/pages/PodcastPage";
 import EpisodePage from "@/pages/EpisodePage";
 
 // Import loaders
-import { podcastsLoader } from "@/helpers/loaders";
+import { podcastsLoader, podcastLoader } from "@/helpers/loaders";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +48,7 @@ const router = createBrowserRouter([
           {
             path: ":podcastId",
             element: <PodcastPage />,
+            loader: podcastLoader(queryClient),
           },
           {
             path: ":podcastId/episode/:episodeId",

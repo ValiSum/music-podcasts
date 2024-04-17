@@ -1,5 +1,5 @@
-import { PODCASTS_API_URL } from "@/helpers/constants";
-import { podcastsMapper } from "@/helpers/mappers";
+import { PODCASTS_API_URL, PODCAST_API_URL } from "@/helpers/constants";
+import { podcastsMapper, podcastMapper } from "@/helpers/mappers";
 
 export async function fetchPodcasts(query?: string) {
   try {
@@ -19,5 +19,16 @@ export async function fetchPodcasts(query?: string) {
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch podcasts");
+  }
+}
+
+export async function fetchPodcast(id: string) {
+  try {
+    const response = await fetch(PODCAST_API_URL(id));
+    const data = await response.json();
+    return podcastMapper(data);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch podcast");
   }
 }
