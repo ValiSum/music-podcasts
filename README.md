@@ -7,7 +7,12 @@ This project involves developing a mini-application for listening to music podca
 - [Vite](https://vitejs.dev/)
 - [React Router](https://reactrouter.com/en/main)
 - [@tanstack/react-query](https://tanstack.com/query/latest)
+- [axios](https://axios-http.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Vitest](https://vitest.dev/)
+- [Testing Library](https://testing-library.com/)
+- [happy-dom](https://github.com/capricorn86/happy-dom)
+- [msw](https://mswjs.io/)
 
 ---
 
@@ -80,6 +85,30 @@ Open your browser and visit http://localhost:3000/ to see the project in product
 
 ---
 
+## Testing
+
+To run all tests you have to use the following command:
+
+```bash
+# with yarn
+yarn run test
+
+# with npm
+npm run test
+```
+
+To see the metric of the percentage of code analyzed through the tests, you can run the following command:
+
+```bash
+# with yarn
+yarn run coverage
+
+# with npm
+npm run coverage
+```
+
+---
+
 ## Project development
 
 ### Initial setup and installation
@@ -105,3 +134,7 @@ Design of the episode view at `/podcast/:podcastId/episode/:episodeId`, sharing 
 ### Final changes
 
 Design and implementation of the error handling view. Restructuring of some directories and components. Final adjustments to component design.
+
+### Add testing
+
+Added some unit tests using [Vitest](https://vitest.dev/) together with [Testing Library](https://testing-library.com/) and [msw](https://mswjs.io/) to be able to capture and mock requests. There has also been some changes in the code structure to facilitate the integration of the tests.
