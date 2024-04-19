@@ -1,10 +1,10 @@
-import { PODCASTS_API_URL, PODCAST_API_URL } from "@/helpers/constants";
 import { podcastsMapper, podcastMapper } from "@/helpers/mappers";
+import { get } from "@/helpers/axios";
 
 export async function fetchPodcasts(query?: string) {
   try {
-    const response = await fetch(PODCASTS_API_URL);
-    const data = await response.json();
+    const { data } = await get("/us/rss/toppodcasts/limit=100/genre=1310/json");
+
     const dataMapped = podcastsMapper(data);
     if (query) {
       return dataMapped.filter((podcast) => {
@@ -24,8 +24,15 @@ export async function fetchPodcasts(query?: string) {
 
 export async function fetchPodcast(id: string) {
   try {
-    const response = await fetch(PODCAST_API_URL(id));
-    const data = await response.json();
+    const { data } = await get(`/lookup`, {
+      params: {
+        id,
+        media: "podcast",
+        entity: "podcastEpisode",
+        limit: 20,
+      },
+    });
+
     return podcastMapper(data);
   } catch (error) {
     console.error(error);
