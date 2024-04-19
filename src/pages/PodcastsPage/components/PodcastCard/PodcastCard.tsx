@@ -11,6 +11,7 @@ export default function PodcastCard({ podcast }: Props) {
       to={`/podcast/${podcast.id}`}
       key={podcast.id}
       className="mb-auto flex"
+      data-testid="podcast-card"
     >
       <div className="w-full rounded-md border p-4 text-center shadow-lg">
         <div className="-mt-20 mb-4 flex justify-center">

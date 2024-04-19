@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { podcastsMock } from "./mocks";
+import { podcastsMock, episodesMock } from "./mocks";
 
 export const handlers = [
   http.get("*/raw", ({ request }) => {
@@ -11,7 +11,7 @@ export const handlers = [
     }
 
     if (searchParam?.includes(`/lookup`)) {
-      return HttpResponse.json({});
+      return HttpResponse.json(episodesMock);
     }
 
     return HttpResponse.json({});

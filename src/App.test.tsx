@@ -4,7 +4,7 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { podcastsMock } from "./mocks/mocks";
+import { podcastsMock } from "@/mocks/mocks";
 import App from "./App";
 
 describe("App", () => {

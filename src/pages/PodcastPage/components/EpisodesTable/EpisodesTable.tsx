@@ -29,6 +29,7 @@ export default function EpisodesTable({
               <Link
                 className="text-sky-600"
                 to={`/podcast/${podcastId}/episode/${id}`}
+                data-testid="episode-link"
               >
                 {title}
               </Link>
