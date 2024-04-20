@@ -18,7 +18,7 @@ export default function PodcastLayout() {
       <div className="p-6">
         <div className="flex flex-col divide-y rounded-md border p-6 shadow-md">
           <div className="flex items-center justify-center pb-6">
-            <Link to={`/podcast/${podcast.id}`}>
+            <Link to={`/podcast/${podcast.id}`} className="hover:shadow-xl">
               <img
                 className="h-60 w-60 rounded-md border-gray-50 object-cover"
                 src={podcast.image}
@@ -28,11 +28,17 @@ export default function PodcastLayout() {
           </div>
 
           <div className="py-6">
-            <Link to={`/podcast/${podcast.id}`} className="font-bold">
+            <Link
+              to={`/podcast/${podcast.id}`}
+              className="font-bold hover:underline"
+            >
               {podcast.title}
             </Link>
             <p className="italic">
-              by <Link to={`/podcast/${podcast.id}`}>{podcast.artist}</Link>
+              by{" "}
+              <Link to={`/podcast/${podcast.id}`} className="hover:underline">
+                {podcast.artist}
+              </Link>
             </p>
           </div>
           <div className="pt-6">

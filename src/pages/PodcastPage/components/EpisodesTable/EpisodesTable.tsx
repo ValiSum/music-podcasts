@@ -27,7 +27,7 @@ export default function EpisodesTable({
           >
             <td className="px-2 py-2">
               <Link
-                className="text-sky-600"
+                className="text-sky-600 hover:underline active:text-sky-800"
                 to={`/podcast/${podcastId}/episode/${id}`}
                 data-testid="episode-link"
               >

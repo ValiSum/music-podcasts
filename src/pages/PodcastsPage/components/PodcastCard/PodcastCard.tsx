@@ -10,7 +10,7 @@ export default function PodcastCard({ podcast }: Props) {
     <Link
       to={`/podcast/${podcast.id}`}
       key={podcast.id}
-      className="mb-auto flex"
+      className="mb-auto flex transition duration-300 ease-in-out hover:shadow-xl"
       data-testid="podcast-card"
     >
       <div className="w-full rounded-md border p-4 text-center shadow-lg">

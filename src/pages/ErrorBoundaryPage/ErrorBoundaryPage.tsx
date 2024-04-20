@@ -20,8 +20,12 @@ export default function ErrorBoundaryPage() {
         <h1 className="text-2xl font-bold">Oops!</h1>
         <p className="italic">Sorry, an unexpected error has occurred.</p>
         <p className="italic">{errorMessage}</p>
-        <Link to="/" reloadDocument className="text-sky-600 underline">
-          Reload the current page
+        <Link
+          to="/"
+          reloadDocument
+          className="text-sky-600 hover:underline active:text-sky-800"
+        >
+          Go to home page
         </Link>
       </div>
     </div>
